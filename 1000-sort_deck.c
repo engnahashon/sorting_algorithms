@@ -1,18 +1,9 @@
 #include <stdlib.h>
 #include "deck.h"
-
-int card_value_to_num(const char *value);
-
-/* Compare function for qsort */
-int card_cmp(const void *a, const void *b)
-{
-    const card_t *ca = (*(const deck_node_t **)a)->card;
-    const card_t *cb = (*(const deck_node_t **)b)->card;
-
-    if (ca->kind != cb->kind)
-        return (ca->kind - cb->kind);
-    return (card_value_to_num(ca->value) - card_value_to_num(cb->value));
-}
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "deck.h"
 
 /* Helper function to convert card value to numerical rank */
 int card_value_to_num(const char *value)
@@ -49,6 +40,17 @@ int card_value_to_num(const char *value)
     }
 }
 
+/* Compare function for qsort */
+int card_cmp(const void *a, const void *b)
+{
+    const card_t *ca = (*(const deck_node_t **)a)->card;
+    const card_t *cb = (*(const deck_node_t **)b)->card;
+
+    if (ca->kind != cb->kind)
+        return (ca->kind - cb->kind);
+    return (card_value_to_num(ca->value) - card_value_to_num(cb->value));
+}
+
 /* Sorts a deck of cards */
 void sort_deck(deck_node_t **deck)
 {
@@ -75,4 +77,4 @@ void sort_deck(deck_node_t **deck)
     }
     node_array[51]->next = NULL;
 }
-    
+
