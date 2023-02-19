@@ -17,16 +17,35 @@ int card_cmp(const void *a, const void *b)
 /* Helper function to convert card value to numerical rank */
 int card_value_to_num(const char *value)
 {
-    if (value[0] >= '2' && value[0] <= '9')
-        return value[0] - '0';
-    switch (value[0])
-    {
-        case 'A': return 1;
-        case 'T': return 10;
-        case 'J': return 11;
-        case 'Q': return 12;
-        case 'K': return 13;
-        default: return 0;
+    if (strcmp(value, "2") == 0)
+        return 2;
+    else if (strcmp(value, "3") == 0)
+        return 3;
+    else if (strcmp(value, "4") == 0)
+        return 4;
+    else if (strcmp(value, "5") == 0)
+        return 5;
+    else if (strcmp(value, "6") == 0)
+        return 6;
+    else if (strcmp(value, "7") == 0)
+        return 7;
+    else if (strcmp(value, "8") == 0)
+        return 8;
+    else if (strcmp(value, "9") == 0)
+        return 9;
+    else if (strcmp(value, "10") == 0)
+        return 10;
+    else if (strcmp(value, "Jack") == 0)
+        return 11;
+    else if (strcmp(value, "Queen") == 0)
+        return 12;
+    else if (strcmp(value, "King") == 0)
+        return 13;
+    else if (strcmp(value, "Ace") == 0)
+        return 14;
+    else {
+        fprintf(stderr, "Error: invalid card value %s\n", value);
+        exit(1);
     }
 }
 
